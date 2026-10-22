@@ -124,18 +124,29 @@
       padding: 0;
     }
   }
-  /* Resume typography and hierarchy follow the supplied resume reference. */
+  /* Reference PDF: Times New Roman, black ink, and #0563c1 email links.
+     At an 850px paper width, 18pt / 12pt / 10.08pt map to 25px / 16.667px / 14px. */
   .resume-sheet {
+    --resume-ink: #000;
+    --resume-link: #0563c1;
     width: 850px;
     max-width: 100%;
     min-height: 1100px;
-    margin: 0 auto;
+    margin: 12px auto;
     padding: 30px 36px 38px;
     background: #fff;
-    color: #000;
-    font-family: "Times New Roman", "Songti SC", SimSun, serif;
-    font-size: 15px;
-    line-height: 1.3;
+    color: var(--resume-ink);
+    border: 1px solid #dedede;
+    box-shadow: 0 0 0 8px #f1f1f1, 0 1px 8px rgb(0 0 0 / 12%);
+    font-family: "Times New Roman", Times, "Songti SC", SimSun, serif;
+    font-size: 16.6667px;
+    line-height: 1.2;
+    font-weight: 400;
+    font-style: normal;
+    letter-spacing: normal;
+    text-shadow: none;
+    -webkit-text-stroke: 0;
+    -webkit-text-size-adjust: 100%;
     text-align: left;
     overflow-wrap: break-word;
   }
@@ -166,7 +177,7 @@
   }
   .resume-sheet .resume-meta {
     margin: 1px 0;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.3;
   }
   .resume-header-with-photo .resume-meta,
@@ -174,12 +185,14 @@
     padding-right: 84px;
   }
   .resume-sheet a {
-    color: #000;
+    color: var(--resume-ink);
     text-decoration: none;
   }
   .resume-sheet a[href^="mailto:"] {
-    color: #0066cc;
+    color: var(--resume-link);
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 1px;
   }
   .resume-sheet .resume-photo {
     position: absolute;
@@ -197,7 +210,7 @@
     margin: 0 0 6px;
     padding: 0 0 2px;
     border-bottom: 1px solid #000;
-    font-size: 15px;
+    font-size: 15.3333px;
     line-height: 1.15;
     font-weight: 700;
     text-indent: 0;
@@ -207,6 +220,15 @@
   }
   .resume-sheet .resume-entry:last-child {
     margin-bottom: 0;
+  }
+  .resume-sheet strong {
+    color: var(--resume-ink);
+    font-weight: 700;
+  }
+  .resume-entry-row,
+  .resume-education-row,
+  .resume-section > .resume-entry > strong {
+    font-size: 15.3333px;
   }
   .resume-entry-row,
   .resume-education-row {
@@ -243,9 +265,17 @@
   @media (max-width: 46.875em) {
     .resume-sheet {
       min-height: 0;
+      margin: 0 auto;
       padding: 22px 12px;
-    font-size: 14px;
-    line-height: 1.4;
+      border: 0;
+      box-shadow: none;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .resume-entry-row,
+    .resume-education-row,
+    .resume-section > .resume-entry > strong {
+      font-size: inherit;
     }
     .resume-sheet .resume-header-with-photo {
       display: grid;
