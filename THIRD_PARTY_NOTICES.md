@@ -12,4 +12,6 @@ jQuery 2.1.3 来自 cdnjs 的对应公开版本，原文件头版权声明保留
 
 已取得资源及 SHA-256 见 materials/reference/asset-manifest.json。
 
+简历正文使用 Noto Serif SC（Copyright 2012 Google Inc.），以 SIL Open Font License 1.1 分发。字体从 Google Fonts 的官方字体服务取得，按网站所需字符进行子集化，内部名称改为 Resume Serif，以本地 WOFF2 文件提供常规与半粗字重。完整许可证保存在 site/licenses/NotoSerifSC-OFL.txt；网页无需连接外部字体服务。
+
 密码学习工具位于 lab/，使用 sm-crypto-v2 1.15.1（MIT）与锁定的 @noble 依赖，安装包中保留各自 LICENSE。来源、标准示例与核对边界见 lab/SOURCES.md，版本和完整性哈希见 lab/package-lock.json。它与静态个人网站分别运行，不随 site/ 发布。
