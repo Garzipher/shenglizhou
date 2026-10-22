@@ -1,6 +1,6 @@
 # 周圣力个人简历网站
 
-[中文站](https://garzipher.github.io/Personal_Resume/) · [English](https://garzipher.github.io/Personal_Resume/en/)
+[中文站](https://garzipher.github.io/shenglizhou/) · [English](https://garzipher.github.io/shenglizhou/en/)
 
 个人经历、项目和简历展示网站。沿用 [JIAN Junhao 的个人站](https://junhaojian.github.io/) 的布局、配色和日期样式，使用周圣力本人已确认的资料替换内容。
 
@@ -10,7 +10,7 @@
 - 包含简介、技能与奖项、项目、工作经历、简历五组双语页面。
 - 分别提供中文、英文的一页 PDF 下载与图片预览。
 - 静态 HTML、CSS 和 JavaScript，无构建依赖；语言切换使用普通链接。
-- 相对路径适配 GitHub Pages 的 /Personal_Resume/ 子路径。
+- 相对路径适配 GitHub Pages 的 /shenglizhou/ 子路径。
 - 样式、脚本和图片链接带内容哈希版本，更新资源后自动更换版本标记，避免旧缓存混用。
 - 站内链接采用轻量缓存导航：空闲或悬停时预取，点击时更新内容，支持前进/后退和对应页面的语言切换。首次访问仍是完整静态页面，直接打开及刷新任意页面均可使用；脚本不可用时保留普通链接。
 - 日期标签直接生成到 HTML；页面不再加载 jQuery、旧主题插件或 Google Fonts。头像和简历预览优先使用无损 WebP，同时保留 PNG 回退。节省流量模式和慢速 2G 连接不主动预取。
@@ -29,7 +29,7 @@
 
 .github/workflows/pages.yml 在 main 的站点文件变更后执行，只上传 site/，不使用 gh-pages 分支。Actions 已固定到经核对的官方提交 SHA；默认令牌仅有读取权限，发布任务单独授予 pages:write 和 id-token:write。
 
-正式访问地址：https://garzipher.github.io/Personal_Resume/ 。可在 Actions 的 Deploy resume to GitHub Pages 任务中查看部署状态或手动重新运行。此地址属于 Garzipher/Personal_Resume 项目站；没有配置其他 GitHub 用户域名。
+正式访问地址：https://garzipher.github.io/shenglizhou/ 。可在 Actions 的 Deploy resume to GitHub Pages 任务中查看部署状态或手动重新运行。此地址属于 Garzipher/shenglizhou 项目站；没有配置其他 GitHub 用户域名。
 
 ## 仓库范围
 
