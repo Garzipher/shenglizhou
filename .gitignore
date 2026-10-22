@@ -1,0 +1,14 @@
+# This repository contains only the public website and deployment metadata.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/THIRD_PARTY_NOTICES.md
+!/.github/
+!/site/
+**/__pycache__/
+**/*.pyc
+**/.DS_Store
+**/Thumbs.db
+**/desktop.ini
+**/node_modules/

@@ -1,0 +1,132 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro|Oswald);
+
+/****************************************/
+/* Styling rules, such as font and colors */
+.date-as-calendar {
+  font-variant: normal;
+  font-style: normal;
+  font-weight: normal;
+  font-family: "Helvetica", "Arial", sans-serif;
+
+  /* It seems vertical-align: baseline does not work correctly with display: inline-flex. */
+  vertical-align: top;
+
+  /* margin: 1ex; */
+
+  color: black;
+  background: white;
+/*  background : linear-gradient(to bottom right, #FFF 0%, #EEE 100%);*/
+
+  border: 0px solid #888;
+  border-radius: 5px;
+  overflow: hidden;
+
+  box-shadow: 2px 2px 2px -2px black;
+}
+.date-as-calendar .weekday,
+.date-as-calendar .day,
+.date-as-calendar .month,
+.date-as-calendar .year,
+.date-as-calendar .year2{
+  text-align: center;
+  line-height: 1.3;
+}
+.date-as-calendar .year2 {
+  font-family: sans-serif;
+/*   font-family: "Oswald", sans-serif; */
+  text-transform: uppercase;
+/*   background: red; */
+/*   red */
+  background : linear-gradient(to bottom right, #D66 0%, #A00 100%);
+/*   blue */
+  background : linear-gradient(to bottom right, #3C5B6F 0%, #153448 100%);
+/* orange */
+    background : linear-gradient(to bottom right, #F7B787 0%, #EE7214 100%);
+/*  cyan  */
+/*  background : linear-gradient(to bottom right, #3C5B6F 0%, #153448 100%);*/
+/*   light cyan */
+/*   background : linear-gradient(to bottom right, #77B0AA 0%, #003C43 100%); */
+  color: white;
+/*  font-weight: bold;*/
+}
+
+.date-as-calendar .year {
+  font-family: sans-serif;
+/*   font-family: "Oswald", sans-serif; */
+/*   background: red; */
+/*   red */
+  background : linear-gradient(to bottom right, #D66 0%, #A00 100%);
+/*   blue */
+  background : linear-gradient(to bottom right, #3C5B6F 0%, #153448 100%);
+/*  cyan  */
+  background : linear-gradient(to bottom right, #3C5B6F 0%, #153448 100%);
+/*   light cyan */
+   background : linear-gradient(to bottom right, #77B0AA 0%, #003C43 100%);
+  color: white;
+/*  font-weight: bold;*/
+}
+
+
+/****************************************/
+/* Layout rules using display: inline-flex and relative dimensions using em. */
+.inline-flex.date-as-calendar {
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 3.05em;
+  height: 2.7em;
+}
+.inline-flex.date-as-calendar .weekday,
+.inline-flex.date-as-calendar .day,
+.inline-flex.date-as-calendar .month,
+.inline-flex.date-as-calendar .year,
+.inline-flex.date-as-calendar .year2,{
+  display: block;
+  flex: 1 1 auto;
+}
+.inline-flex.date-as-calendar .month {
+  order: 2;
+  font-size: 1em;
+  text-transform: uppercase;
+/*  padding-bottom: 1.1em;*/
+}
+.inline-flex.date-as-calendar .day {
+  order: 3;
+  font-size: 1em;
+}
+.inline-flex.date-as-calendar .year,
+.inline-flex.date-as-calendar .year2 {
+  order: 1;
+  font-size: 1.1em;
+}
+
+/****************************************/
+/* Multiple sizes. */
+.date-as-calendar.size0_5x {
+  font-size: 8px;
+}
+.date-as-calendar.size0_6x {
+  font-size: 11px;
+}
+.date-as-calendar.size0_75x {
+  font-size: 12px;
+}
+.date-as-calendar.size1x {
+  font-size: 16px;
+}
+.date-as-calendar.size1_25x {
+  font-size: 20px;
+}
+.date-as-calendar.size1_5x {
+  font-size: 24px;
+}
+.date-as-calendar.size1_75x {
+  font-size: 28px;
+}
+.date-as-calendar.size2x {
+  font-size: 32px;
+}
+.date-as-calendar.size3x {
+  font-size: 48px;
+}

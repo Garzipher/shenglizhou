@@ -1,0 +1,301 @@
+  /*main css modified by me*/
+  /*colors*/
+
+
+.realistic-marker-highlight{
+  position:relative;
+}
+
+.realistic-marker-highlight:before{
+  content:"";
+  background-color:orange;
+  width:100%;
+  height:1em;
+  position:absolute;
+  z-index:-1;
+  filter:url(#marker-shape);
+/*  left:0.25em;*/
+  top:0.1em;
+/*  padding:0 0.25em;*/
+}
+
+.date-ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+
+.date-ul li {
+    margin-bottom: 15px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.content-div {
+  padding-left: 10px;
+  flex: 1;
+  text-align: left;
+  margin: auto;
+  width: 50%;
+}
+
+.date-container {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 50px;
+  font-family: sans-serif;
+/*   border:1px solid black; */
+}
+.dt-day {
+  font-size: 3.5em;
+  font-weight: bold;
+  /*background: linear-gradient(to bottom, white, #e18437);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;*/
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dt-year {
+  font-size: 1em;
+  font-weight: bold;
+  color: #494E52;
+  position: absolute;
+/*   background: white; */
+/*   transform-origin: top left; */
+/*   transform: rotate(270deg);  */       top: 15%;
+  left: 5%;
+}
+
+.dt-month {
+  font-size: 0.8em;
+/*   font-weight: bold; */
+/*   background: #494e52; */
+  color: black;
+  text-align: center;
+/*   width: 100%; */
+  position: absolute;
+  bottom: 15%;
+  left: 5%;
+/*   right: 5%; */
+}
+
+
+
+
+  .page__inner-wrap{
+    text-align: justify;
+  }
+
+  :root {
+    --ccfa:#08488e;
+    --ccfb: #5ca4d0;
+    --ccfc: #bfd8ed;
+    --jcrq1: #bd3e02;
+    --jcrq2: #fdb170;
+    --best: #d11e1f;
+    --best0: #fc9576;
+    --url: #1679AB;
+    --urlin: #ffb703;
+  }
+  .noHover{
+    pointer-events: none;
+  }
+  /*url*/
+  a {
+    color: var(--url);
+  }
+  a:link { text-decoration: none; }
+
+  h2 {
+/*    color: #50514f;*/
+    text-indent: 0.5em;
+  }
+  h3 {
+    text-indent: 1em;
+  }
+  /*em me*/
+  [class*="Junhao Jian"]{
+  font-weight: bold;
+  /*text-decoration: underline;*/
+  }
+
+  [class="ccfa"] {
+    font-weight: bold;
+    color: blue;
+    /*margin-right: -4%;*/
+/*    float:right;*/
+    /*display: inline-block;*/
+    outline: none;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 3.5px 4px;
+    border: 0;
+    color: #fff;
+    font-family: sans-serif;
+    background : linear-gradient(to bottom right, var(--ccfb) 0%, var(--ccfa) 100%);
+    box-shadow: 1px 1px 1px -1px black;
+/*    background: ;*/
+    line-height: 1.1;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  [class="ccfb"] {
+    font-weight: bold;
+    color: blue;
+    /*margin-right: -4%;*/
+/*    float:right;*/
+    /*display: inline-block;*/
+    outline: none;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 3.5px 4px;
+    border: 0;
+    white-space: nowrap;
+    color: #fff;
+/*    background: var(--ccfb);*/
+    background : linear-gradient(to bottom right, var(--ccfc) 0%, var(--ccfa) 100%);
+    box-shadow: 1px 1px 1px -1px black;
+    line-height: 1.1;
+    font-size: 12px;
+  }
+/*  [class="ccfc"] {
+    font-weight: bold;
+    color: blue;
+    float:right;
+    outline: none;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 3px 8px;
+    border: 0;
+    color: #fff;
+    background: var(--ccfc);
+    line-height: 1.1;
+    font-size: 12px;
+  }*/
+
+  [class="jcrq1"] {
+/*    font-weight: bold;*/
+    color: blue;
+    /*margin-right: -4%;*/
+/*    float:right;*/
+    /*display: inline-block;*/
+    outline: none;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 3.5px 4px;
+    border: 0;
+    white-space: nowrap;
+    color: #fff;
+    font-family: sans-serif;
+    background : linear-gradient(to bottom right, var(--jcrq2) 0%, var(--jcrq1) 100%);
+    box-shadow: 1px 1px 1px -1px black;
+/*    background: var(--jcrq1);*/
+    line-height: 1.1 em;
+    font-size: 12px;
+  }
+
+/*  [class="jcrq2"] {
+    font-weight: bold;
+    color: blue;
+    float:right;
+    outline: none;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 3px 5px;
+    border: 0;
+    color: #fff;
+    background: var(--jcrq2);
+    line-height: 1.1;
+    font-size: 12px;
+  }*/
+
+  [class="best_paper"] {
+    font-weight: bold;
+    color: blue;
+    /*margin-right: -4%;*/
+    /*clear:right;*/
+/*    float:right;*/
+    /*display: inline-block;*/
+    outline: none;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 3.5px 4px;
+    border: 0;
+    white-space: nowrap;
+    color: #fff;
+/*    background: var(--best);*/
+    background : linear-gradient(to bottom right, var(--best0) 0%, var(--best) 100%);
+    box-shadow: 1px 1px 1px -1px black;
+    line-height: 1.1;
+    font-size: 12px;
+  }
+
+  [class="best_paper_inline"] {
+    font-weight: bold;
+    color: blue;
+    white-space:nowrap;
+    outline: none;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 3px 6px;
+    border: 0;
+    color: #fff;
+    background: var(--best);
+    line-height: 1.1;
+    font-size: 12px;
+  }
+
+  [class="ccfa_inline"] {
+    font-weight: bold;
+    color: blue;
+    white-space:nowrap;
+    outline: none;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 3px 8px;
+    border: 0;
+    color: #fff;
+    background: var(--ccfa);
+    line-height: 1.1;
+    font-size: 12px;
+  }
+
+  [class="jcrq1_inline"] {
+    font-weight: bold;
+    color: blue;
+    white-space:nowrap;
+    outline: none;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 3px 5px;
+    border: 0;
+    color: #fff;
+    background: var(--jcrq1);
+    line-height: 1.1;
+    font-size: 12px;
+  }
+
+    [class="ccfb_inline"] {
+    font-weight: bold;
+    color: blue;
+    white-space:nowrap;
+    outline: none;
+    font-weight: 600;
+    border-radius: 3px;
+    padding: 3px 8px;
+    border: 0;
+    color: #fff;
+    background: var(--ccfb);
+    line-height: 1.1;
+    font-size: 12px;
+  }
