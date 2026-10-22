@@ -1,3 +1,8 @@
+  /* Show content immediately; the reference intro delayed main content by 350ms. */
+  .masthead, #main {
+    -webkit-animation: none;
+    animation: none;
+  }
   /*main css modified by me*/
   /*colors*/
 

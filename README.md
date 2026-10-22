@@ -11,6 +11,8 @@
 - 分别提供中文、英文的一页 PDF 下载与图片预览。
 - 静态 HTML、CSS 和 JavaScript，无构建依赖；语言切换使用普通链接。
 - 相对路径适配 GitHub Pages 的 /Personal_Resume/ 子路径。
+- 站内链接采用轻量缓存导航：空闲或悬停时预取，点击时更新内容，支持前进/后退和对应页面的语言切换。首次访问仍是完整静态页面，直接打开及刷新任意页面均可使用；脚本不可用时保留普通链接。
+- 日期标签直接生成到 HTML；页面不再加载 jQuery、旧主题插件或 Google Fonts。头像和简历预览优先使用无损 WebP，同时保留 PNG 回退。节省流量模式和慢速 2G 连接不主动预取。
 
 ## 本地预览
 
@@ -45,6 +47,8 @@
 本机 RESUME/content/profile.json 与 profile.en.json 分别维护两种语言的事实资料；scripts/build_site.py 生成两套网页。scripts/build_resume.py 和 --en 参数分别生成中文、英文 DOCX；scripts/export_word.ps1 使用 Windows Word 导出 PDF，再运行 scripts/publish_resume_assets.py 同步 PDF 和预览图。上述本地源文件不随这个静态发布仓库上传。
 
 更新后请核对页面语言、日期、导航和两版 PDF。技术名称及产品原名保留原文；英语能力仅表述为“英语四级水平”，不表述为已持有证书。无获奖记录不新增奖项。英文公司名为便于阅读的翻译，不主张其为公司官方英文名称。
+
+本机 scripts/optimize_images.py 由页面构建和简历资源发布流程调用，在 PNG 更新后重新生成无损 WebP；不要只替换 PNG 而保留过期的同名 WebP。快速导航缓存仅存在于当前页面会话内，刷新页面即可获取已部署的最新版本。
 
 RainSoul 的本人参与范围是产品、UI 和 Git 迭代，代码实现和测试由 AI 完成。密码应用学习工具未表述为本人已经完成的职业项目。
 

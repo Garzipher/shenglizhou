@@ -6,6 +6,8 @@ assets/css/main.css 包含 Font Awesome Free 5.5.0 的原版权声明：图标 C
 
 jQuery 2.1.3 来自 cdnjs 的对应公开版本，原文件头版权声明保留，许可证为 MIT。
 
+性能优化后，网页不再引用 jQuery、旧主题 JavaScript 插件及 Academicons 样式，也不请求 Google Fonts。原有资源与许可证仍保留以追溯来源；当前交互由 navigation.js 与 fast-navigation.js 实现，日期标签在本机构建时生成。
+
 已于 2026-10-22 核对参考仓库 JunhaoJian/junhaojian.github.io 的 main/LICENSE：MIT License，Copyright (c) 2026 JunhaoJian。完整许可原文保存在 site/licenses/reference-site-MIT.txt，并随站点分发。页面结构、主题定制、CSS 与导航脚本沿用参考站；双语内容、个人资料、语言切换和日期本地化已修改。本文件不代表原作者对本站的背书。原作者的个人内容不作为本人的经历发布。
 
 已取得资源及 SHA-256 见 materials/reference/asset-manifest.json。
