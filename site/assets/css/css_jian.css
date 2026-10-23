@@ -94,6 +94,14 @@
     }
   }
   @media (max-width: 57.8124em) {
+    /* The resume already contains identity details and its own portrait. */
+    #main[data-page="resume"] .sidebar-container {
+      display: none;
+    }
+    #main[data-page="resume"] .content-container .page {
+      width: 100%;
+      padding-inline: 0;
+    }
     .profile_box {
       display: grid;
       grid-template-columns: 72px minmax(0, 1fr);
@@ -307,7 +315,7 @@
     .resume-sheet {
       min-height: 0;
       margin: 0 auto;
-      padding: 22px 12px;
+      padding: 18px 6px 24px;
       border: 0;
       box-shadow: none;
       font-size: 14px;
@@ -320,15 +328,18 @@
     }
     .resume-sheet .resume-header-with-photo {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 66px;
+      grid-template-columns: minmax(0, 1fr) 62px;
+      grid-template-rows: 32px auto auto;
       grid-template-areas:
         "name photo"
         "location photo"
         "contact contact";
-      align-items: center;
+      align-items: start;
       column-gap: 8px;
+      row-gap: 4px;
       min-height: 0;
       padding-right: 0;
+      text-align: left;
     }
     .resume-header-with-photo .resume-meta,
     .resume-header-with-photo .resume-name {
@@ -336,6 +347,7 @@
     }
     .resume-header-with-photo .resume-name {
       grid-area: name;
+      margin-bottom: 0;
     }
     .resume-header-with-photo .resume-meta-location {
       grid-area: location;
@@ -346,11 +358,15 @@
     .resume-sheet .resume-photo {
       position: static;
       grid-area: photo;
-      width: 66px;
+      width: 62px;
       justify-self: end;
     }
     .resume-sheet .resume-name {
       font-size: 23px;
+    }
+    .resume-sheet .resume-meta-field {
+      display: inline-block;
+      white-space: nowrap;
     }
     .resume-sheet .resume-entry-row {
       grid-template-columns: minmax(0, 1fr) auto;
