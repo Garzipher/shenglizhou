@@ -15,7 +15,6 @@
   var entrySequence = 0;
   var scrollPositions = new Map();
   var restoring = false;
-  var idleTimer;
   var connection = navigator.connection;
   var allowPrefetch = !connection || (!connection.saveData && !/2g/.test(connection.effectiveType));
   function key(url) {
@@ -49,21 +48,6 @@
     if (!state.resumeEntry) state.resumeEntry = Date.now() + "_" + (++entrySequence);
     scrollPositions.set(state.resumeEntry, {x: scrollX, y: scrollY});
     history.replaceState(state, "", location.href);
-  }
-  function warmLinks() {
-    if (!allowPrefetch) return;
-    clearTimeout(idleTimer);
-    idleTimer = setTimeout(function () {
-      var urls = [];
-      document.querySelectorAll("#site-nav a, a.language-switch").forEach(function (a) {
-        var url = new URL(a.href);
-        if (eligible(url) && !cache.has(key(url)) && !urls.some(function (u) { return key(u) === key(url); })) urls.push(url);
-      });
-      // A sequential queue avoids competing with first-screen images and CSS.
-      urls.reduce(function (previous, url) {
-        return previous.then(function () { return load(url).catch(function () {}); });
-      }, Promise.resolve());
-    }, 600);
   }
   async function visit(url, fromHistory, position) {
     var ticket = ++sequence;
@@ -108,7 +92,6 @@
       }
       window.scrollTo(position ? position.x : 0, position ? position.y : 0);
       requestAnimationFrame(function () { restoring = false; });
-      warmLinks();
     } catch (error) {
       if (ticket === sequence) {
         if (fromHistory) location.replace(url.href);
@@ -155,6 +138,4 @@
     if (eligible(url)) visit(url, true, scrollPositions.get(event.state && event.state.resumeEntry) || event.state);
     else location.reload();
   });
-  if (document.readyState === "complete") warmLinks();
-  else window.addEventListener("load", warmLinks, {once: true});
 })();
