@@ -127,14 +127,14 @@
   /* One self-hosted serif family covers Chinese, Latin, digits and punctuation. */
   @font-face {
     font-family: "Resume Serif";
-    src: url("../fonts/resume-serif-regular.woff2?v=d4055f720b3a") format("woff2");
+    src: url("../fonts/resume-serif-regular.woff2?v=177545dcfd8f") format("woff2");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
   }
   @font-face {
     font-family: "Resume Serif";
-    src: url("../fonts/resume-serif-semibold.woff2?v=8a9b2a0bd277") format("woff2");
+    src: url("../fonts/resume-serif-semibold.woff2?v=147f08c7ea46") format("woff2");
     font-style: normal;
     font-weight: 600 900;
     font-display: swap;
