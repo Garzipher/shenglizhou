@@ -127,14 +127,14 @@
   /* One self-hosted serif family covers Chinese, Latin, digits and punctuation. */
   @font-face {
     font-family: "Resume Serif";
-    src: url("../fonts/resume-serif-regular.woff2?v=a88698912e0c") format("woff2");
+    src: url("../fonts/resume-serif-regular.woff2?v=d4055f720b3a") format("woff2");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
   }
   @font-face {
     font-family: "Resume Serif";
-    src: url("../fonts/resume-serif-semibold.woff2?v=7813f4ce1dd5") format("woff2");
+    src: url("../fonts/resume-serif-semibold.woff2?v=8a9b2a0bd277") format("woff2");
     font-style: normal;
     font-weight: 600 900;
     font-display: swap;
@@ -281,6 +281,12 @@
     margin: 0 0 10px;
     font-size: inherit;
     color: var(--resume-ink);
+  }
+  .resume-sheet .resume-technologies {
+    margin: 2px 0 6px;
+    font-size: inherit;
+    color: var(--resume-ink);
+    overflow-wrap: anywhere;
   }
   .resume-sheet .resume-bullets {
     margin: 0;
