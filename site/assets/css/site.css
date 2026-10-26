@@ -162,6 +162,8 @@ a:focus{outline:thin dotted #f89406;outline:5px auto #f89406;outline-offset:-2px
   .resume-actions {
     display: flex;
     justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
     width: 210mm;
     max-width: 100%;
     margin: 0 auto 12px;
