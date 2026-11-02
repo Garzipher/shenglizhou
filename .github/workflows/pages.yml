@@ -26,7 +26,41 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          ref: main
           persist-credentials: false
+      - name: Checkout independent GDRY resume
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: gdry-project-manager
+          path: .gdry-resume
+          persist-credentials: false
+      - name: Add GDRY page without changing the original website
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import shutil
+          original = Path('site')
+          before = {p.relative_to(original): hashlib.sha256(p.read_bytes()).hexdigest()
+                    for p in original.rglob('*') if p.is_file()}
+          branch = Path('.gdry-resume/site')
+          page = branch / 'resume-gdry.html'
+          assets = branch / 'variants/gdry'
+          assert page.is_file() and assets.is_dir(), 'GDRY resume files missing'
+          assert not (original / 'resume-gdry.html').exists(), 'GDRY page must remain on its own branch'
+          assert not (original / 'variants/gdry').exists(), 'GDRY assets must remain on their own branch'
+          assert not page.is_symlink()
+          for p in assets.rglob('*'):
+              assert not p.is_symlink(), 'GDRY assets may not contain symbolic links'
+              if p.is_file():
+                  assert p.suffix in {'.css', '.woff2'}, 'Unexpected GDRY asset'
+          shutil.copy2(page, original / 'resume-gdry.html')
+          shutil.copytree(assets, original / 'variants/gdry')
+          for name, digest in before.items():
+              assert hashlib.sha256((original / name).read_bytes()).hexdigest() == digest, str(name)
+          print('Original website unchanged:', len(before), 'files verified; GDRY page added.')
+          PY
       - name: Configure GitHub Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
       - name: Upload static website only
