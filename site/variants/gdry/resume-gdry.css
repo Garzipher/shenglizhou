@@ -147,14 +147,14 @@ a:focus{outline:thin dotted #f89406;outline:5px auto #f89406;outline-offset:-2px
   /* One self-hosted serif family covers Chinese, Latin, digits and punctuation. */
   @font-face {
     font-family: "Resume Serif";
-    src: url("resume-serif-regular.woff2?v=c463e3d43936") format("woff2");
+    src: url("resume-serif-regular.woff2?v=a2d75a58fd8e") format("woff2");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
   }
   @font-face {
     font-family: "Resume Serif";
-    src: url("resume-serif-semibold.woff2?v=d679d80d42dc") format("woff2");
+    src: url("resume-serif-semibold.woff2?v=b04ded1c010e") format("woff2");
     font-style: normal;
     font-weight: 600 900;
     font-display: swap;
@@ -927,3 +927,4 @@ a:focus{outline:thin dotted #f89406;outline:5px auto #f89406;outline-offset:-2px
 }
 .resume-sheet .resume-gdry-summary{margin:0 0 14px;font-size:inherit;line-height:inherit;color:var(--resume-ink);}
 @media(min-width:46.876em){.resume-sheet .resume-header-with-photo{min-height:106px;}}
+body[data-variant="gdry"] #site-nav .masthead__menu-home-item{display:table-cell!important;}

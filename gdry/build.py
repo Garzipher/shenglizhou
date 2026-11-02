@@ -1,4 +1,4 @@
-"""Build only resume-gdry.html and its own stylesheet/fonts."""
+"""Build independent GDRY pages and their own stylesheet/fonts."""
 from pathlib import Path
 from html import escape
 import argparse
@@ -7,6 +7,7 @@ import json
 import re
 import sys
 from lxml import html
+from pages import build_pages
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'site'
@@ -81,7 +82,8 @@ def build(font_dir, font_deps):
     document.find('head/title').text = '周圣力 - 项目管理与实施交付方向简历'
     document.xpath('//meta[@name="description"]')[0].set('content', profile['summary'])
     ASSETS.mkdir(parents=True, exist_ok=True)
-    required = set(ord(char) for char in document.text_content() if not char.isspace()) | set(range(32, 127))
+    documents = build_pages(SITE, profile, document)
+    required = {ord(char) for page in documents.values() for char in page.text_content() if not char.isspace()} | set(range(32, 127))
     for filename in ['regular', 'semibold']:
         existing = ASSETS / ('resume-serif-' + filename + '.woff2')
         if existing.exists() and required <= set(TTFont(existing).getBestCmap()):
@@ -100,15 +102,17 @@ def build(font_dir, font_deps):
         css = re.sub(r'\.\./fonts/' + re.escape(filename) + r'(?:\?[^\)\"\x27]*)?', filename + '?v=' + digest(ASSETS / filename), css)
     css += '.resume-sheet .resume-gdry-summary{margin:0 0 14px;font-size:inherit;line-height:inherit;color:var(--resume-ink);}\n'
     css += '@media(min-width:46.876em){.resume-sheet .resume-header-with-photo{min-height:106px;}}\n'
+    css += 'body[data-variant="gdry"] #site-nav .masthead__menu-home-item{display:table-cell!important;}\n'
     stylesheet = ASSETS / 'resume-gdry.css'
     stylesheet.write_bytes(css.encode('utf-8'))
-    document.xpath('//link[@rel="stylesheet"]')[0].set('href', 'variants/gdry/resume-gdry.css?v=' + digest(stylesheet))
-    for preload, filename in zip(document.xpath('//link[@rel="preload" and @as="font"]'), ['regular', 'semibold']):
-        font = ASSETS / ('resume-serif-' + filename + '.woff2')
-        preload.set('href', 'variants/gdry/' + font.name + '?v=' + digest(font))
-    output = SITE / 'resume-gdry.html'
-    output.write_bytes((html.tostring(document, encoding='unicode', doctype='<!doctype html>') + '\n').encode('utf-8'))
-    print(json.dumps({'page': str(output), 'font_characters': len(required), 'new_assets': 4}, ensure_ascii=False))
+    for filename, page in documents.items():
+        page.xpath('//link[@rel="stylesheet"]')[0].set('href', 'variants/gdry/resume-gdry.css?v=' + digest(stylesheet))
+        for preload, weight in zip(page.xpath('//link[@rel="preload" and @as="font"]'), ['regular', 'semibold']):
+            font = ASSETS / ('resume-serif-' + weight + '.woff2')
+            preload.set('href', 'variants/gdry/' + font.name + '?v=' + digest(font))
+        output = SITE / filename
+        output.write_bytes((html.tostring(page, encoding='unicode', doctype='<!doctype html>') + '\n').encode('utf-8'))
+    print(json.dumps({'pages': sorted(documents), 'font_characters': len(required), 'new_assets': 4}, ensure_ascii=False))
 
 
 if __name__ == '__main__':
