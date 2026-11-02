@@ -45,17 +45,22 @@ jobs:
           before = {p.relative_to(original): hashlib.sha256(p.read_bytes()).hexdigest()
                     for p in original.rglob('*') if p.is_file()}
           branch = Path('.gdry-resume/site')
-          page = branch / 'resume-gdry.html'
+          pages = sorted(branch.glob('*-gdry.html'))
           assets = branch / 'variants/gdry'
-          assert page.is_file() and assets.is_dir(), 'GDRY resume files missing'
-          assert not (original / 'resume-gdry.html').exists(), 'GDRY page must remain on its own branch'
+          expected_pages = {'index-gdry.html', 'about-gdry.html', 'skills-gdry.html',
+                            'projects-gdry.html', 'career-gdry.html', 'resume-gdry.html'}
+          assert pages and {p.name for p in pages} <= expected_pages, 'Unexpected GDRY page'
+          assert any(p.name == 'resume-gdry.html' for p in pages), 'GDRY resume missing'
+          assert assets.is_dir(), 'GDRY assets missing'
+          assert all(not (original / p.name).exists() for p in pages), 'GDRY pages must remain on their own branch'
           assert not (original / 'variants/gdry').exists(), 'GDRY assets must remain on their own branch'
-          assert not page.is_symlink()
+          assert all(not p.is_symlink() for p in pages)
+          for page in pages:
+              shutil.copy2(page, original / page.name)
           for p in assets.rglob('*'):
               assert not p.is_symlink(), 'GDRY assets may not contain symbolic links'
               if p.is_file():
                   assert p.suffix in {'.css', '.woff2', '.pdf', '.docx'}, 'Unexpected GDRY asset'
-          shutil.copy2(page, original / 'resume-gdry.html')
           shutil.copytree(assets, original / 'variants/gdry')
           for name, digest in before.items():
               assert hashlib.sha256((original / name).read_bytes()).hexdigest() == digest, str(name)
