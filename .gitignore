@@ -6,6 +6,7 @@
 !/THIRD_PARTY_NOTICES.md
 !/.github/
 !/site/
+!/gdry/
 **/__pycache__/
 **/*.pyc
 **/.DS_Store

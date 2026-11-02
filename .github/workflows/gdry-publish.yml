@@ -1,0 +1,23 @@
+name: Publish independent GDRY resume
+on:
+  push:
+    branches: [gdry-project-manager]
+    paths:
+      - 'site/resume-gdry.html'
+      - 'site/variants/gdry/**'
+      - '.github/workflows/gdry-publish.yml'
+permissions:
+  actions: write
+  contents: read
+concurrency:
+  group: gdry-resume-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request main website publication with independent resume
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh api --method POST "repos/$GH_REPO/actions/workflows/pages.yml/dispatches" -f ref=main
