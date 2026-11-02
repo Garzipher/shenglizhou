@@ -42,9 +42,6 @@ def build(font_dir, font_deps):
     profile = json.loads((ROOT / 'gdry/profile.json').read_text(encoding='utf-8'))
     document = html.fromstring((SITE / 'resume.html').read_bytes())
     sheet = document.xpath('//div[@class="resume-sheet"]')[0]
-    header = sheet.xpath('./header')[0]
-    name = header.xpath('./h1')[0]
-    header.insert(list(header).index(name) + 1, html.fromstring('<p class="resume-meta resume-gdry-direction">' + escape(profile['direction']) + '</p>'))
     sections = sheet.xpath('./section')
     assert len(sections) == 4
     work = ''
@@ -63,7 +60,14 @@ def build(font_dir, font_deps):
         skills += '<li><strong>' + escape(label) + '：</strong>' + escape(value) + '</li>'
     replace_body(sections[3], skills + '</ul>')
     sheet.insert(1, html.fromstring('<p class="resume-gdry-summary">' + escape(profile['summary']) + '</p>'))
-    replace_body(document.xpath('//div[@class="resume-actions"]')[0], '<a class="resume-download" href="resume.html">查看原版简历</a>')
+    downloads = []
+    for label, filename in [('PDF', 'Zhou_Shengli_Resume_GDRY.pdf'), ('Word', 'Zhou_Shengli_Resume_GDRY.docx')]:
+        path = ASSETS / filename
+        href = 'variants/gdry/' + filename
+        if path.exists():
+            href += '?v=' + digest(path)
+        downloads.append('<a class="resume-download" href="' + href + '" download="周圣力_个人简历_GDRY.' + path.suffix[1:] + '">下载简历（' + label + '）</a>')
+    replace_body(document.xpath('//div[@class="resume-actions"]')[0], ''.join(downloads))
     for switch in document.xpath('//a[contains(@class,"language-switch")]'):
         switch.getparent().remove(switch)
     for link in document.xpath('//link[@rel="alternate"]'):
@@ -94,9 +98,8 @@ def build(font_dir, font_deps):
     css = (SITE / 'assets/css/site.css').read_text(encoding='utf-8')
     for filename in ['resume-icons.woff2', 'resume-serif-regular.woff2', 'resume-serif-semibold.woff2']:
         css = re.sub(r'\.\./fonts/' + re.escape(filename) + r'(?:\?[^\)\"\x27]*)?', filename + '?v=' + digest(ASSETS / filename), css)
-    css += '\n.resume-gdry-direction{font-weight:600;color:#171717!important;}\n'
     css += '.resume-sheet .resume-gdry-summary{margin:0 0 14px;font-size:inherit;line-height:inherit;color:var(--resume-ink);}\n'
-    css += '@media(max-width:46.875em){.resume-header-with-photo .resume-gdry-direction{grid-column:1;grid-row:2;margin:0}.resume-header-with-photo .resume-meta-location{grid-row:3}.resume-header-with-photo .resume-meta-contact{grid-row:4}.resume-header-with-photo .resume-photo{grid-row:1 / 4}.resume-sheet .resume-header-with-photo{grid-template-rows:32px auto auto auto}}\n'
+    css += '@media(min-width:46.876em){.resume-sheet .resume-header-with-photo{min-height:106px;}}\n'
     stylesheet = ASSETS / 'resume-gdry.css'
     stylesheet.write_bytes(css.encode('utf-8'))
     document.xpath('//link[@rel="stylesheet"]')[0].set('href', 'variants/gdry/resume-gdry.css?v=' + digest(stylesheet))
