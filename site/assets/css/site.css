@@ -195,7 +195,7 @@ a:focus{outline:thin dotted #f89406;outline:5px auto #f89406;outline-offset:-2px
     width: 210mm;
     max-width: 100%;
     min-height: 297mm;
-    height: 297mm;
+    height: auto;
     margin: 12px auto;
     padding: 32px 34px 38px;
     background: #fff;
