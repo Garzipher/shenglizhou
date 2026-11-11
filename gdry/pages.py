@@ -112,7 +112,7 @@ def build_pages(site, profile, resume_document):
     projects = template('projects')
     project = profile['project']
     blocks = ''
-    for title, item in zip(['需求与功能规划', '开发协作与验收'], project['bullets']):
+    for title, item in zip(['项目背景', '开发协作与验收', '数据与安全'], project['bullets']):
         blocks += '<div style="margin-left:15px;margin-bottom:10px;"><strong style="color:#0077b6;">' + title + '</strong><p style="margin:5px 0 10px 10px;">' + emphasized(*item) + '</p></div>'
     fill(content(projects), '<ul class="date-ul"><li style="line-height:1.8;"><div style="margin-bottom:15px;"><strong style="font-size:1.1rem;color:#023e8a;">'
          + escape(project['name']) + '</strong></div><div class="project-skills" style="color:#555;margin-bottom:15px;">'
