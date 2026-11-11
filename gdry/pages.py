@@ -29,6 +29,10 @@ def emphasized(text, phrase):
 
 def prepare(document, filename, description):
     document.find('body').set('data-variant', 'gdry')
+    for li in document.xpath('//ul[contains(@class,"author__urls")]/li[i[contains(@class,"fa-location-arrow") or contains(@class,"fa-birthday-cake")]]'):
+        li.getparent().remove(li)
+    for paragraph in document.xpath('//div[@class="author__urls_sm"]/p'):
+        paragraph.getparent().remove(paragraph)
     icon = '<svg aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" style="vertical-align:-0.15em;fill:currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.49c-2.23.48-2.7-.54-2.7-.54-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.71 1.21 1.87.86 2.33.66.07-.52.28-.86.51-1.06-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.66 7.66 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.19c0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>'
     url = 'https://github.com/Garzipher'
     for ul in document.xpath('//ul[contains(@class,"author__urls")]'):
@@ -59,7 +63,7 @@ def prepare(document, filename, description):
     label = next(label for label, route in ROUTES.items() if route == filename)
     document.find('head/title').text = '周圣力 - ' + label + ' | GDRY'
     if filename == 'resume-gdry.html':
-        document.find('head/title').text = '周圣力 - 项目管理与实施交付方向简历'
+        document.find('head/title').text = '周圣力 - 项目管理与实施交付'
     document.xpath('//meta[@name="description"]')[0].set('content', description)
     return document
 

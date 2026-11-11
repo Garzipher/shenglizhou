@@ -79,7 +79,7 @@ def build(font_dir, font_deps):
         link.set('href', 'resume-gdry.html')
     document.get_element_by_id('main').set('data-page', 'resume')
     document.get_element_by_id('main').set('data-variant', 'gdry')
-    document.find('head/title').text = '周圣力 - 项目管理与实施交付方向简历'
+    document.find('head/title').text = '周圣力 - 项目管理与实施交付'
     document.xpath('//meta[@name="description"]')[0].set('content', profile['summary'])
     ASSETS.mkdir(parents=True, exist_ok=True)
     documents = build_pages(SITE, profile, document)
