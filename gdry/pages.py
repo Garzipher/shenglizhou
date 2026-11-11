@@ -87,7 +87,6 @@ def build_pages(site, profile, resume_document):
     fill(content(about), '<h1>关于我</h1><p>' + escape(intro[0].text) + '</p>'
          + '<h1>工作方式</h1><p>' + escape(intro[1].text) + '</p>'
          + '<p>使用 Codex Agent 配置、迭代测试 Skill，统一用例、缺陷证据与输出模板，并复核结果；结合自动化脚本完成业务回归与接口验证。</p>'
-         + '<h1>个人项目</h1><p>' + escape(intro[2].text) + '</p>'
          + '<p><a href="career-gdry.html">查看工作经历</a> · <a href="projects-gdry.html">查看项目经历</a> · <a href="resume-gdry.html">查看完整简历</a></p>')
     documents['about-gdry.html'] = about
 
