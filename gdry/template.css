@@ -1,17 +1,24 @@
 .resume-actions .template-picker{display:flex;align-items:center;gap:8px;margin-right:auto;color:#494e52;font-size:14px;white-space:nowrap}
 .template-picker select{min-height:40px;padding:6px 28px 6px 10px;border:1px solid #d7d7d7;border-radius:3px;background:#fff;color:#333;font:inherit}
-.resume-sheet[data-template="1"]{padding:0 34px 28px;border-top:7px solid #c7b5a6;font-family:"Microsoft YaHei","PingFang SC",sans-serif;font-size:12px;line-height:1.48}
+.resume-sheet[data-template="1"]{height:auto;min-height:297mm;padding:0 34px 36px;border-top:7px solid #c7b5a6;font-family:"Microsoft YaHei","PingFang SC",sans-serif;font-size:15px;line-height:1.68}
 .resume-sheet[data-template="1"] .resume-header{margin:0 -34px 14px;padding:21px 34px 18px 150px;min-height:135px;background:#22374a;text-align:left;color:#fff}
 .resume-sheet[data-template="1"] .resume-photo{position:absolute;top:15px;left:34px;right:auto;width:78px}
 .resume-sheet[data-template="1"] .resume-name{padding:0;margin:0 0 10px;color:#fff;font-size:25px}
 .resume-sheet[data-template="1"] .resume-meta{padding:0;margin:4px 0;color:#fff;font-size:12px}
 .resume-sheet[data-template="1"] .resume-gdry-summary{margin:0 0 12px}
-.resume-sheet[data-template="1"] .resume-section{margin-bottom:12px}
-.resume-sheet[data-template="1"] .resume-section h2{display:flex;align-items:center;gap:8px;margin-bottom:7px;padding-bottom:4px;border-bottom:1px solid #25384a;font-size:14px}
+.resume-sheet[data-template="1"] .resume-section{margin-bottom:20px}
+.resume-sheet[data-template="1"] .resume-section h2{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #25384a;font-size:16px}
 .resume-sheet[data-template="1"] .resume-section h2::before{content:"";width:14px;height:14px;flex:none;border-radius:50%;background:#25384a}
-.resume-sheet[data-template="1"] .resume-entry{margin-bottom:9px}
+.resume-sheet[data-template="1"] .resume-entry{margin-bottom:15px}
 .resume-sheet[data-template="1"] .resume-entry-row,.resume-sheet[data-template="1"] .resume-education-row{margin-bottom:3px}
-.resume-sheet[data-template="1"] .resume-bullets li + li{margin-top:3px}
+.resume-sheet[data-template="1"] .resume-bullets li + li{margin-top:6px}
+.template-one-abilities{display:none}
+.resume-sheet[data-template="1"] .template-one-abilities{display:grid;gap:8px}
+.resume-sheet[data-template="1"] .resume-skills{display:none}
+.resume-sheet[data-template="1"] .ability-row{display:grid;grid-template-columns:120px 1fr;align-items:stretch;background:#eff3f5}
+.resume-sheet[data-template="1"] .ability-row strong{padding:5px 10px;background:#263d50;color:white;font-weight:600}
+.resume-sheet[data-template="1"] .ability-row span{padding:5px 12px}
 @media(max-width:46.875em){.resume-actions .template-picker{width:100%;margin-right:0}.resume-sheet[data-template="1"]{padding:0 12px 24px;font-size:14px;line-height:1.6}.resume-sheet[data-template="1"] .resume-header{display:block;min-height:112px;margin:0 -12px 14px;padding:14px 12px 14px 96px}.resume-sheet[data-template="1"] .resume-photo{top:12px;left:12px;width:68px}.resume-sheet[data-template="1"] .resume-name{font-size:22px}.resume-sheet[data-template="1"] .resume-meta{font-size:12px;overflow-wrap:anywhere}}
 @media print{.resume-sheet[data-template="1"]{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 @media(max-width:46.875em){.resume-actions .resume-download{font-size:12px;padding-left:8px;padding-right:8px}}
+@media print{.resume-actions,.author__avatar,.author__name,.author__urls{display:none!important}.resume-sheet[data-template="1"]{width:210mm;height:auto;min-height:297mm;margin:0;padding:0 14mm 14mm;box-shadow:none;border:0;font-size:15px;line-height:1.55;overflow:visible;break-after:auto}.resume-sheet[data-template="1"] .resume-header{margin:0 -14mm 10mm;padding:18mm 14mm 14mm 48mm;min-height:43mm}.resume-sheet[data-template="1"] .resume-photo{top:10mm;left:14mm;width:25mm}.resume-sheet[data-template="1"] .resume-section{break-inside:auto;margin-bottom:8mm}.resume-sheet[data-template="1"] .resume-entry{break-inside:avoid;margin-bottom:5mm}.resume-sheet[data-template="1"] .resume-section h2{break-after:avoid}.resume-sheet[data-template="1"] .resume-entry-row{break-after:avoid}}

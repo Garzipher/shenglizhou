@@ -14,14 +14,14 @@ doc = Document()
 s = doc.sections[0]
 s.page_width, s.page_height = Mm(210), Mm(297)
 s.left_margin = s.right_margin = Mm(12)
-s.top_margin = Mm(7)
-s.bottom_margin = Mm(8)
+s.top_margin = Mm(14)
+s.bottom_margin = Mm(14)
 style = doc.styles['Normal']
 style.font.name = 'Microsoft YaHei'
 style._element.rPr.rFonts.set(qn('w:eastAsia'), '微软雅黑')
-style.font.size = Pt(8.5)
+style.font.size = Pt(10.5)
 style.paragraph_format.space_after = Pt(0)
-style.paragraph_format.line_spacing = 1.12
+style.paragraph_format.line_spacing = 1.25
 
 def shade(cell, color):
     tcPr = cell._tc.get_or_add_tcPr()
@@ -37,6 +37,9 @@ def para(text='', bold=False, size=None, color=None, before=0, after=0):
 
 def heading(text):
     p=para('●  '+text,True,10,'22374A',before=5,after=3)
+    p.paragraph_format.keep_with_next = True
+    if text == '项目经历':
+        p.paragraph_format.page_break_before = True
     pPr=p._p.get_or_add_pPr(); borders=OxmlElement('w:pBdr'); bottom=OxmlElement('w:bottom')
     for k,v in {'val':'single','sz':'5','space':'3','color':'22374A'}.items(): bottom.set(qn('w:'+k),v)
     borders.append(bottom);pPr.append(borders)
@@ -71,7 +74,16 @@ para(project['name']+'   |   '+project['role'],True)
 para(project['skills'])
 for text,emphasis in project['bullets']: bullet(text,emphasis)
 heading('专业技能')
-for label,value in profile['skills']: bullet(label+'：'+value,label+'：')
+abilities = [('业务与交付', '业务流程梳理 · 需求评审 · 交付验证'), ('自动化与 AI', 'Python · Codex Agent'), ('接口与系统', 'Apifox · SQL / MySQL · Linux · Git'), ('语言能力', '英语四级')]
+ability_table=doc.add_table(rows=0,cols=2); ability_table.autofit=False
+ability_table.columns[0].width=Mm(35);ability_table.columns[1].width=Mm(145)
+for label,value in abilities:
+    cells=ability_table.add_row().cells;cells[0].width=Mm(35);cells[1].width=Mm(145)
+    for cell,color in [(cells[0],'263D50'),(cells[1],'EFF3F5')]:
+        shade(cell,color)
+        cell.vertical_alignment=1
+    a=cells[0].paragraphs[0].add_run(label);a.bold=True;a.font.color.rgb=RGBColor(255,255,255);a.font.size=Pt(10)
+    b=cells[1].paragraphs[0].add_run(value);b.font.size=Pt(10)
 target=ROOT/'site/variants/gdry/Zhou_Shengli_Resume_GDRY_Template1.docx'
 doc.save(target)
 print(target)

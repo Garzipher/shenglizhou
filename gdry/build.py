@@ -56,7 +56,10 @@ def build(font_dir, font_deps):
     body += '<span class="resume-role">' + escape(project['role']) + '</span></div><p class="resume-technologies">' + escape(project['skills']) + '</p>'
     body += bullets(project['bullets']) + '</div>'
     replace_body(sections[2], body)
-    skills = '<h2>专业技能</h2><ul class="resume-bullets resume-skills">'
+    skills = '<h2>专业技能</h2><div class="template-one-abilities">'
+    for label, value in [('业务与交付', '业务流程梳理 · 需求评审 · 交付验证'), ('自动化与 AI', 'Python · Codex Agent'), ('接口与系统', 'Apifox · SQL / MySQL · Linux · Git'), ('语言能力', '英语四级')]:
+        skills += '<div class="ability-row"><strong>' + escape(label) + '</strong><span>' + escape(value) + '</span></div>'
+    skills += '</div><ul class="resume-bullets resume-skills">'
     for label, value in profile['skills']:
         skills += '<li><strong>' + escape(label) + '：</strong>' + escape(value) + '</li>'
     replace_body(sections[3], skills + '</ul>')

@@ -79,14 +79,13 @@ def build_pages(site, profile, resume_document):
     section = content(home)
     intro = section.xpath('./p')
     intro[0].text = '周圣力，毕业于岭南师范学院数据科学与大数据技术专业。' + profile['summary']
-    intro[1].text = '工作中围绕业务流程开展需求评审、测试设计、版本回归和问题跟进，配合实施团队验证医院上线与私有化交付结果。'
+    intro[1].text = '工作中注重理解业务需求与实际使用场景，具备测试设计、问题分析、自动化验证和交付支持经验。善于运用 Python、Codex Agent 等工具改进工作流程，通过梳理问题、验证结果和跨团队协作推动问题解决。对软件技术与 AI 应用保持兴趣，希望持续学习和探索，用技术解决实际问题。'
     intro[2].text = '个人项目 RainSoul 从自己的长篇写作需求出发，负责需求拆分、UI 方案和验收要求，通过 Codex Agent 推进实现，并跟进 Git 版本迭代与问题修复。'
     documents['index-gdry.html'] = home
 
     about = template('index')
     fill(content(about), '<h1>关于我</h1><p>' + escape(intro[0].text) + '</p>'
          + '<h1>工作方式</h1><p>' + escape(intro[1].text) + '</p>'
-         + '<p>使用 Codex Agent 配置、迭代测试 Skill，统一用例、缺陷证据与输出模板，并复核结果；结合自动化脚本完成业务回归与接口验证。</p>'
          + '<p><a href="career-gdry.html">查看工作经历</a> · <a href="projects-gdry.html">查看项目经历</a> · <a href="resume-gdry.html">查看完整简历</a></p>')
     documents['about-gdry.html'] = about
 
