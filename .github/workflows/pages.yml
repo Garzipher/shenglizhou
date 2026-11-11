@@ -60,7 +60,7 @@ jobs:
           for p in assets.rglob('*'):
               assert not p.is_symlink(), 'GDRY assets may not contain symbolic links'
               if p.is_file():
-                  assert p.suffix in {'.css', '.woff2', '.pdf', '.docx'}, 'Unexpected GDRY asset'
+                  assert p.suffix in {'.css', '.js', '.woff2', '.pdf', '.docx'}, 'Unexpected GDRY asset'
           shutil.copytree(assets, original / 'variants/gdry')
           for name, digest in before.items():
               assert hashlib.sha256((original / name).read_bytes()).hexdigest() == digest, str(name)
