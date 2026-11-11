@@ -62,13 +62,18 @@ def build(font_dir, font_deps):
     replace_body(sections[3], skills + '</ul>')
     sheet.insert(1, html.fromstring('<p class="resume-gdry-summary">' + escape(profile['summary']) + '</p>'))
     downloads = []
-    for label, filename in [('PDF', 'Zhou_Shengli_Resume_GDRY.pdf'), ('Word', 'Zhou_Shengli_Resume_GDRY.docx')]:
+    for label, filename in [('PDF', 'Zhou_Shengli_Resume_GDRY_Template1.pdf'), ('Word', 'Zhou_Shengli_Resume_GDRY_Template1.docx')]:
         path = ASSETS / filename
         href = 'variants/gdry/' + filename
         if path.exists():
             href += '?v=' + digest(path)
         downloads.append('<a class="resume-download" href="' + href + '" download="周圣力_个人简历_GDRY.' + path.suffix[1:] + '">下载简历（' + label + '）</a>')
-    replace_body(document.xpath('//div[@class="resume-actions"]')[0], ''.join(downloads))
+    selector = '<label class="template-picker">简历模板 <select id="resume-template" aria-label="选择简历模板"><option value="1">简历模板 1</option><option value="2">简历模板 2</option></select></label>'
+    replace_body(document.xpath('//div[@class="resume-actions"]')[0], selector + ''.join(downloads))
+    sheet.set('data-template', '1')
+    script = html.Element('script', src='variants/gdry/template-switch.js?v=' + digest(ASSETS / 'template-switch.js'))
+    script.set('defer', 'defer')
+    document.find('body').append(script)
     for switch in document.xpath('//a[contains(@class,"language-switch")]'):
         switch.getparent().remove(switch)
     for link in document.xpath('//link[@rel="alternate"]'):
@@ -103,6 +108,7 @@ def build(font_dir, font_deps):
     css += '.resume-sheet .resume-gdry-summary{margin:0 0 14px;font-size:inherit;line-height:inherit;color:var(--resume-ink);}\n'
     css += '@media(min-width:46.876em){.resume-sheet .resume-header-with-photo{min-height:106px;}}\n'
     css += 'body[data-variant="gdry"] #site-nav .masthead__menu-home-item{display:table-cell!important;}\n'
+    css += (ROOT / 'gdry/template.css').read_text(encoding='utf-8')
     stylesheet = ASSETS / 'resume-gdry.css'
     stylesheet.write_bytes(css.encode('utf-8'))
     for filename, page in documents.items():
