@@ -73,17 +73,20 @@ project=profile['project']
 para(project['name']+'   |   '+project['role'],True)
 para(project['skills'])
 for text,emphasis in project['bullets']: bullet(text,emphasis)
+heading('个人总结')
+para('具备医疗、企业 QMS 与车载系统测试及交付经验，关注业务需求理解、功能验证与上线保障，能够结合业务场景梳理问题并跟进解决。参与个人项目需求与功能规划、UI 方案及交互验收，运用 AI 工具和自动化技术支持协作与迭代，期望向售前与产品方向发展。')
 heading('专业技能')
-abilities = [('业务与交付', '业务流程梳理 · 需求评审 · 交付验证'), ('自动化与 AI', 'Python · Codex Agent'), ('接口与系统', 'Apifox · SQL / MySQL · Linux · Git'), ('语言能力', '英语四级')]
+abilities = ['需求理解与业务沟通', '功能规划与方案梳理', '交互验收与问题跟进', '上线保障与交付验证']
 ability_table=doc.add_table(rows=0,cols=2); ability_table.autofit=False
-ability_table.columns[0].width=Mm(35);ability_table.columns[1].width=Mm(145)
-for label,value in abilities:
-    cells=ability_table.add_row().cells;cells[0].width=Mm(35);cells[1].width=Mm(145)
-    for cell,color in [(cells[0],'263D50'),(cells[1],'EFF3F5')]:
-        shade(cell,color)
-        cell.vertical_alignment=1
-    a=cells[0].paragraphs[0].add_run(label);a.bold=True;a.font.color.rgb=RGBColor(255,255,255);a.font.size=Pt(10)
-    b=cells[1].paragraphs[0].add_run(value);b.font.size=Pt(10)
+ability_table.columns[0].width=Mm(90);ability_table.columns[1].width=Mm(90)
+for index in range(0,len(abilities),2):
+    cells=ability_table.add_row().cells
+    for cell,label in zip(cells,abilities[index:index+2]):
+        p=cell.paragraphs[0];p.paragraph_format.space_after=Pt(6)
+        p.add_run(label+'  ').font.size=Pt(9)
+        r=p.add_run('━━━━');r.font.color.rgb=RGBColor.from_string('263D50');r.font.size=Pt(9)
+para('AI 与技术工具：Codex Agent、Skill、Python、Pytest、Midscene、Apifox、SQL / MySQL、Linux、Git、Jenkins',before=4)
+para('语言能力：英语四级')
 target=ROOT/'site/variants/gdry/Zhou_Shengli_Resume_GDRY_Template1.docx'
 doc.save(target)
 print(target)

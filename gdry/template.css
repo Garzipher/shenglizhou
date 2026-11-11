@@ -1,5 +1,6 @@
 .resume-actions .template-picker{display:flex;align-items:center;gap:8px;margin-right:auto;color:#494e52;font-size:14px;white-space:nowrap}
 .template-picker select{min-height:40px;padding:6px 28px 6px 10px;border:1px solid #d7d7d7;border-radius:3px;background:#fff;color:#333;font:inherit}
+.resume-sheet[data-template="2"]{height:auto}
 .resume-sheet[data-template="1"]{height:auto;min-height:297mm;padding:0 34px 36px;border-top:7px solid #c7b5a6;font-family:"Microsoft YaHei","PingFang SC",sans-serif;font-size:15px;line-height:1.68}
 .resume-sheet[data-template="1"] .resume-header{margin:0 -34px 14px;padding:21px 34px 18px 150px;min-height:135px;background:#22374a;text-align:left;color:#fff}
 .resume-sheet[data-template="1"] .resume-photo{position:absolute;top:15px;left:34px;right:auto;width:78px}
@@ -13,11 +14,15 @@
 .resume-sheet[data-template="1"] .resume-entry-row,.resume-sheet[data-template="1"] .resume-education-row{margin-bottom:3px}
 .resume-sheet[data-template="1"] .resume-bullets li + li{margin-top:6px}
 .template-one-abilities{display:none}
-.resume-sheet[data-template="1"] .template-one-abilities{display:grid;gap:8px}
+.template-one-summary{display:none}
+.resume-sheet[data-template="1"] .template-one-summary{display:block}
+.resume-sheet[data-template="1"] .template-one-abilities{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 24px}
 .resume-sheet[data-template="1"] .resume-skills{display:none}
-.resume-sheet[data-template="1"] .ability-row{display:grid;grid-template-columns:120px 1fr;align-items:stretch;background:#eff3f5}
-.resume-sheet[data-template="1"] .ability-row strong{padding:5px 10px;background:#263d50;color:white;font-weight:600}
-.resume-sheet[data-template="1"] .ability-row span{padding:5px 12px}
+.resume-sheet[data-template="1"] .ability-row{display:grid;grid-template-columns:minmax(0,1fr) 82px;align-items:center;gap:10px;font-size:13px}
+.resume-sheet[data-template="1"] .ability-row span{padding:0}
+.resume-sheet[data-template="1"] .ability-row i{height:7px;background:#263d50;display:block;transform:skewX(15deg)}
+.resume-sheet[data-template="1"] .ability-tools{grid-column:1 / -1;margin:6px 0 0;font-size:13px;line-height:1.8}
+@media(max-width:46.875em){.resume-sheet[data-template="1"] .template-one-abilities{grid-template-columns:1fr}.resume-sheet[data-template="1"] .ability-row{font-size:14px}}
 @media(max-width:46.875em){.resume-actions .template-picker{width:100%;margin-right:0}.resume-sheet[data-template="1"]{padding:0 12px 24px;font-size:14px;line-height:1.6}.resume-sheet[data-template="1"] .resume-header{display:block;min-height:112px;margin:0 -12px 14px;padding:14px 12px 14px 96px}.resume-sheet[data-template="1"] .resume-photo{top:12px;left:12px;width:68px}.resume-sheet[data-template="1"] .resume-name{font-size:22px}.resume-sheet[data-template="1"] .resume-meta{font-size:12px;overflow-wrap:anywhere}}
 @media print{.resume-sheet[data-template="1"]{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 @media(max-width:46.875em){.resume-actions .resume-download{font-size:12px;padding-left:8px;padding-right:8px}}

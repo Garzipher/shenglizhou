@@ -63,6 +63,9 @@ def build(font_dir, font_deps=None):
     with ZipFile(source) as z:
         tree = etree.fromstring(z.read('word/document.xml'))
         body = tree.find(tag('body'))
+        # Keep the compact template on one page after adding the platform entry.
+        margins = body.find(tag('sectPr')).find(tag('pgMar'))
+        margins.set(tag('bottom'), '300')
         ps = body.findall(tag('p'))
         assert len(ps) == 27 and ''.join(ps[0].itertext()).startswith('周圣力')
         replacements = [deepcopy(p) for p in ps[:3]]
