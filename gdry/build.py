@@ -57,15 +57,20 @@ def build(font_dir, font_deps):
     body += bullets(project['bullets']) + '</div>'
     replace_body(sections[2], body)
     skills = '<h2>专业技能</h2><div class="template-one-abilities">'
-    for label in ['需求理解与业务沟通', '功能规划与方案梳理', '交互验收与问题跟进', '上线保障与交付验证']:
-        skills += '<div class="ability-row"><span>' + escape(label) + '</span><i aria-hidden="true"></i></div>'
+    for label, width in [('需求理解与业务沟通', 78), ('功能规划与方案梳理', 72), ('交互验收与问题跟进', 84), ('上线保障与交付验证', 80)]:
+        skills += '<div class="ability-row"><span>' + escape(label) + '</span><i aria-hidden="true" style="--fill:' + str(width) + '%"></i></div>'
     skills += '<p class="ability-tools"><strong>AI 与技术工具：</strong>Codex Agent、Skill、Python、Pytest、Midscene、Apifox、SQL / MySQL、Linux、Git、Jenkins<br><strong>语言能力：</strong>英语四级</p></div><ul class="resume-bullets resume-skills">'
     for label, value in profile['skills']:
         skills += '<li><strong>' + escape(label) + '：</strong>' + escape(value) + '</li>'
     replace_body(sections[3], skills + '</ul>')
-    summary = '<section class="resume-section template-one-summary"><h2>个人总结</h2><p>具备医疗、企业 QMS 与车载系统测试及交付经验，关注业务需求理解、功能验证与上线保障，能够结合业务场景梳理问题并跟进解决。参与个人项目需求与功能规划、UI 方案及交互验收，运用 AI 工具和自动化技术支持协作与迭代，期望向售前与产品方向发展。</p></section>'
+    summary = '<section class="resume-section template-one-summary"><h2>个人总结</h2><p>具备医疗、企业 QMS 与车载系统测试及交付经验，关注业务需求理解、功能验证与上线保障，能够结合业务场景梳理问题并跟进解决。参与个人项目需求与功能规划、UI 方案及交互验收，运用 AI 工具和自动化技术支持协作与迭代。</p></section>'
     sheet.insert(sheet.index(sections[3]), html.fromstring(summary))
     sheet.insert(1, html.fromstring('<p class="resume-gdry-summary">' + escape(profile['summary']) + '</p>'))
+    first = html.Element('div', {'class': 'resume-paper resume-paper-first'})
+    second = html.Element('div', {'class': 'resume-paper resume-paper-second'})
+    for node in list(sheet):
+        (second if node is sections[2] or len(second) else first).append(node)
+    sheet.extend([first, second])
     downloads = []
     for label, filename in [('PDF', 'Zhou_Shengli_Resume_GDRY_Template1.pdf'), ('Word', 'Zhou_Shengli_Resume_GDRY_Template1.docx')]:
         path = ASSETS / filename

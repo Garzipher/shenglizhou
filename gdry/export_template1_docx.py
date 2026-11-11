@@ -7,6 +7,8 @@ from docx.enum.section import WD_SECTION
 from docx.enum.text import WD_LINE_SPACING
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from io import BytesIO
+from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
 profile = json.loads((ROOT / 'gdry/profile.json').read_text(encoding='utf-8'))
@@ -74,17 +76,20 @@ para(project['name']+'   |   '+project['role'],True)
 para(project['skills'])
 for text,emphasis in project['bullets']: bullet(text,emphasis)
 heading('个人总结')
-para('具备医疗、企业 QMS 与车载系统测试及交付经验，关注业务需求理解、功能验证与上线保障，能够结合业务场景梳理问题并跟进解决。参与个人项目需求与功能规划、UI 方案及交互验收，运用 AI 工具和自动化技术支持协作与迭代，期望向售前与产品方向发展。')
+para('具备医疗、企业 QMS 与车载系统测试及交付经验，关注业务需求理解、功能验证与上线保障，能够结合业务场景梳理问题并跟进解决。参与个人项目需求与功能规划、UI 方案及交互验收，运用 AI 工具和自动化技术支持协作与迭代。')
 heading('专业技能')
 abilities = ['需求理解与业务沟通', '功能规划与方案梳理', '交互验收与问题跟进', '上线保障与交付验证']
 ability_table=doc.add_table(rows=0,cols=2); ability_table.autofit=False
 ability_table.columns[0].width=Mm(90);ability_table.columns[1].width=Mm(90)
 for index in range(0,len(abilities),2):
     cells=ability_table.add_row().cells
-    for cell,label in zip(cells,abilities[index:index+2]):
+    for offset,(cell,label) in enumerate(zip(cells,abilities[index:index+2])):
         p=cell.paragraphs[0];p.paragraph_format.space_after=Pt(6)
         p.add_run(label+'  ').font.size=Pt(9)
-        r=p.add_run('━━━━');r.font.color.rgb=RGBColor.from_string('263D50');r.font.size=Pt(9)
+        width=[78,72,84,80][index+offset]
+        graphic=Image.new('RGB',(200,18),'#e3e6e8'); ImageDraw.Draw(graphic).polygon([(0,0),(width*2-10,0),(width*2,18),(0,18)],fill='#263d50')
+        data=BytesIO();graphic.save(data,format='PNG');data.seek(0)
+        p.add_run().add_picture(data,width=Mm(22))
 para('AI 与技术工具：Codex Agent、Skill、Python、Pytest、Midscene、Apifox、SQL / MySQL、Linux、Git、Jenkins',before=4)
 para('语言能力：英语四级')
 target=ROOT/'site/variants/gdry/Zhou_Shengli_Resume_GDRY_Template1.docx'
