@@ -61,15 +61,16 @@ left.paragraphs[0].add_run().add_picture(str(ROOT/'site/images/resume-photo.jpg'
 p=right.paragraphs[0]; r=p.add_run('周圣力');r.bold=True;r.font.size=Pt(18);r.font.color.rgb=RGBColor(255,255,255)
 for text in ['籍贯：广东阳东   ·   居住地：广东广州   ·   出生年月：2003.03','手机号码：+86 18306622399   ·   邮箱：3279533794@qq.com']:
     p=right.add_paragraph();r=p.add_run(text);r.font.color.rgb=RGBColor(255,255,255);r.font.size=Pt(8)
-para(profile['summary'],before=5)
 heading('教育背景')
 para('（本科）岭南师范学院',True)
 para('数据科学与大数据技术                                      2021.09 – 2025.07')
 bullet('GPA：3.2/5','GPA：')
 heading('工作经历')
 for job in profile['work']:
-    para(job['company']+'   |   '+job['role']+'   |   '+job['start']+' – '+job['end'],True,before=2)
-    for text,emphasis in job['bullets']: bullet(text,emphasis)
+    para(job['company']+'   |   '+job['role']+'   |   '+job['start']+' – '+job['end'],True,before=7)
+    for text,emphasis in job['bullets']:
+        bullet(text,emphasis)
+        doc.paragraphs[-1].paragraph_format.space_after = Pt(3)
 heading('项目经历')
 project=profile['project']
 para(project['name']+'   |   '+project['role'],True)

@@ -932,6 +932,7 @@ body[data-variant="gdry"] #site-nav .masthead__menu-home-item{display:table-cell
 .template-picker select{min-height:40px;padding:6px 28px 6px 10px;border:1px solid #d7d7d7;border-radius:3px;background:#fff;color:#333;font:inherit}
 .resume-sheet[data-template="2"]{height:auto}
 .resume-sheet[data-template="1"]{height:auto;min-height:0;padding:0;border:0;background:transparent;box-shadow:none;font-family:"Microsoft YaHei","PingFang SC",sans-serif;font-size:15px;line-height:1.68}
+.resume-sheet[data-template="1"] .resume-paper-first{line-height:1.84}
 .resume-sheet[data-template="2"] .resume-paper{display:contents}
 .resume-sheet[data-template="1"] .resume-paper{box-sizing:border-box;width:100%;min-height:297mm;padding:0 34px 36px;background:#fff;border:1px solid #dedede;box-shadow:0 0 0 8px #f1f1f1,0 1px 8px rgb(0 0 0 / 12%)}
 .resume-sheet[data-template="1"] .resume-paper-first{border-top:7px solid #c7b5a6;margin-bottom:28px}
@@ -940,13 +941,15 @@ body[data-variant="gdry"] #site-nav .masthead__menu-home-item{display:table-cell
 .resume-sheet[data-template="1"] .resume-photo{position:absolute;top:15px;left:34px;right:auto;width:78px}
 .resume-sheet[data-template="1"] .resume-name{padding:0;margin:0 0 10px;color:#fff;font-size:25px}
 .resume-sheet[data-template="1"] .resume-meta{padding:0;margin:4px 0;color:#fff;font-size:12px}
-.resume-sheet[data-template="1"] .resume-gdry-summary{margin:0 0 12px}
+.resume-sheet[data-template="1"] .resume-gdry-summary{display:none}
 .resume-sheet[data-template="1"] .resume-section{margin-bottom:20px}
 .resume-sheet[data-template="1"] .resume-section h2{display:flex;align-items:center;gap:8px;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #25384a;font-size:16px}
 .resume-sheet[data-template="1"] .resume-section h2::before{content:"";width:14px;height:14px;flex:none;border-radius:50%;background:#25384a}
 .resume-sheet[data-template="1"] .resume-entry{margin-bottom:15px}
 .resume-sheet[data-template="1"] .resume-entry-row,.resume-sheet[data-template="1"] .resume-education-row{margin-bottom:3px}
 .resume-sheet[data-template="1"] .resume-bullets li + li{margin-top:6px}
+.resume-sheet[data-template="1"] .resume-paper-first .resume-entry{margin-bottom:20px}
+.resume-sheet[data-template="1"] .resume-paper-first .resume-bullets li + li{margin-top:9px}
 .template-one-abilities{display:none}
 .template-one-summary{display:none}
 .resume-sheet[data-template="1"] .template-one-summary{display:block}
