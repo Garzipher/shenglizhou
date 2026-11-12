@@ -147,14 +147,14 @@ a:focus{outline:thin dotted #f89406;outline:5px auto #f89406;outline-offset:-2px
   /* One self-hosted serif family covers Chinese, Latin, digits and punctuation. */
   @font-face {
     font-family: "Resume Serif";
-    src: url("resume-serif-regular.woff2?v=e0408f4861d2") format("woff2");
+    src: url("resume-serif-regular.woff2?v=488fcf0661ca") format("woff2");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
   }
   @font-face {
     font-family: "Resume Serif";
-    src: url("resume-serif-semibold.woff2?v=6e7b2d914abf") format("woff2");
+    src: url("resume-serif-semibold.woff2?v=4ea3b0344f93") format("woff2");
     font-style: normal;
     font-weight: 600 900;
     font-display: swap;
